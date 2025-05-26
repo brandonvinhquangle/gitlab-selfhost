@@ -1,3 +1,4 @@
+# AWS resource variables
 variable "aws_region" {
   description = "AWS region to deploy resources"
   type        = string
@@ -16,4 +17,13 @@ variable "project_prefix" {
 variable "ami_id" {
   description = "AMI ID for Ubuntu 22.04"
   default     = "ami-053b0d53c279acc90"
+}
+
+# Register GitLab runner variables
+variable "gitlab_url" {
+  type = string
+}
+
+variable "runner_token" {
+  type = string
 }
