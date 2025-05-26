@@ -14,18 +14,14 @@ sudo dpkg --configure -a
 # Update and install prerequisites
 echo "[INFO] Installing prerequisites..."
 sudo apt-get update -y
-sudo apt-get install -y curl openssh-server ca-certificates tzdata perl
+sudo apt-get install -y curl openssh-server ca-certificates tzdata perl docker.io
+sudo usermod -aG docker ubuntu
 
 # Install GitLab CE
 echo "[INFO] Installing GitLab CE..."
 curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash
 EXTERNAL_URL="http://$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)"
 sudo EXTERNAL_URL="$EXTERNAL_URL" apt-get install -y gitlab-ce
-
-# Install Docker for GitLab Runner
-echo "[INFO] Installing Docker..."
-sudo apt-get install -y docker.io
-sudo usermod -aG docker ubuntu
 
 # Output GitLab root password
 echo "[INFO] Saving GitLab credentials..."

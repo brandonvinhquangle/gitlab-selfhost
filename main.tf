@@ -49,7 +49,7 @@ resource "aws_instance" "gitlab_server" {
     volume_type = "gp3"
   }
 
-  # user_data = file("${path.module}/gitlab/gitlab-config.sh")
+  user_data = file("${path.module}/gitlab/gitlab-config.sh")
 
   tags = {
     Name = "${var.project_prefix}-ec2"
