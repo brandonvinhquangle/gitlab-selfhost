@@ -44,7 +44,12 @@ resource "aws_instance" "gitlab_server" {
   vpc_security_group_ids = [aws_security_group.gitlab_sg.id]
   associate_public_ip_address = true
 
-  user_data = file("${path.module}/gitlab/gitlab-config.sh")
+  root_block_device {
+    volume_size = 30
+    volume_type = "gp3"
+  }
+
+  # user_data = file("${path.module}/gitlab/gitlab-config.sh")
 
   tags = {
     Name = "${var.project_prefix}-ec2"
